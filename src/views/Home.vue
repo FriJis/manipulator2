@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+    <div class="container">
         <div class="status--bars">
             <div class="status--bar" ref="z"></div>
             <div class="status--bar" ref="x"></div>
@@ -19,17 +19,18 @@
 import touch from "../modules/touch";
 import io from "../modules/io";
 import progress from "../modules/progress";
-import { percent } from '../modules/helpers'
+import { percent } from "../modules/helpers";
 export default {
     mounted() {
         this.init();
-        io.on('connected', () => {
-            io.emit('getCoords')
-        })
+        io.on("connected", () => {
+            io.emit("getCoords");
+        });
     },
     methods: {
         init() {
             new touch(this.$refs.touchbar).onscreen = (e) => {
+              console.log(e);
                 io.emit("touchbar", e);
             };
 
@@ -46,6 +47,7 @@ export default {
             progY.init();
             const progZ = new progress({ el: this.$refs.z, text: "Z" });
             progZ.init();
+
             io.on("coord", ({ degX, degY, degZ }) => {
                 progX.animate(percent(degX, 180) / 100);
                 progZ.animate(percent(degZ, 180) / 100);
