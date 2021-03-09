@@ -12,6 +12,7 @@
         <div class="claw manag" ref="claw">
             <i class="fas fa-arrows-alt-v"></i>
         </div>
+        <div @click="play()">sdhsiufgydio</div>
     </div>
 </template>
 
@@ -54,6 +55,9 @@ export default {
                 progY.animate(percent(y, 180) / 100);
             });
         },
+        play() {
+          io.emit('recorder/play')
+        }
     },
 };
 </script>

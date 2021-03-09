@@ -3,9 +3,12 @@ const getCoords = require('./modules/getCoords')
 const touchbar = require('./modules/touchbar')
 const wheel = require('./modules/wheel')
 
+const recorderPlay = require('./modules/recorder/play')
+
 module.exports = {
     claw,
     getCoords,
     touchbar,
-    wheel
+    wheel,
+    "recorder/play": recorderPlay
 }
