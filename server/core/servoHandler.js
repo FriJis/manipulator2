@@ -12,12 +12,13 @@ module.exports = class ServoHandler {
         if (d) {
             this._deg = d
         }
-        this.servo.to(d)
+        this.servo.to(this._deg)
     }
     moveDelta(delta) {
         this._deg += (delta / this._k)
-        if (this._deg <= this._min) this._deg = 0
-        if (this._deg >= this._max) this._deg = 180
+        if (this._deg <= this._min) this._deg = this._min
+        if (this._deg >= this._max) this._deg = this._max
+        this.moveTo()
     }
     getDeg() {
         return this._deg

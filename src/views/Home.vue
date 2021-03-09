@@ -30,7 +30,6 @@ export default {
     methods: {
         init() {
             new touch(this.$refs.touchbar).onscreen = (e) => {
-              console.log(e);
                 io.emit("touchbar", e);
             };
 
@@ -48,10 +47,11 @@ export default {
             const progZ = new progress({ el: this.$refs.z, text: "Z" });
             progZ.init();
 
-            io.on("coord", ({ degX, degY, degZ }) => {
-                progX.animate(percent(degX, 180) / 100);
-                progZ.animate(percent(degZ, 180) / 100);
-                progY.animate(percent(degY, 180) / 100);
+            io.on("degrees/update", ({ x, y, z, claw }) => {
+                // console.log(x, y, z, claw);
+                progX.animate(percent(x, 180) / 100);
+                progZ.animate(percent(z, 180) / 100);
+                progY.animate(percent(y, 180) / 100);
             });
         },
     },

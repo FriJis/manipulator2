@@ -7,9 +7,9 @@ const io = require('socket.io')(http, {
         origin: '*',
     }
 });
+
 const { Board } = require("johnny-five");
-const emitters = require('./server/emitters')
-const helpers = require('./server/helpers')
+
 
 const board = new Board({
     port: process.env.COM
@@ -24,11 +24,17 @@ const board = new Board({
 //     res.sendFile(`${__dirname}/index.html`)
 // })
 
+
 board.on("ready", () => {
-    console.log("Ready!");
+    
+    const emitters = require('./server/emitters')
+    const {initServos} = require('./server/binders/servo')
+
     io.on('connection', (socket) => {
         console.log(`connected ${socket.id}`);
+        initServos()
         socket.emit('connected')
+
         Object.keys(emitters).forEach(emitter => {
             socket.on(emitter, e => emitters[emitter]({ io, socket }, e))
         })
