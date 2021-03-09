@@ -1,0 +1,23 @@
+@mixin manag($width, $height, $top: initial, $right: initial, $bottom: initial, $left: initial) {
+    width: $width;
+    height: $height;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+    text-align: center;
+    transform: translate(-50%, -50%);
+
+    i {
+        line-height: $height;
+        color: white;
+    }
+}
+
+@mixin fontFace($path, $name, $weight) {
+    @font-face {
+        font-family: $name;
+        src: url($path);
+        font-weight: $weight;
+    }
+}

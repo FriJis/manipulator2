@@ -1,18 +1,57 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <div class="container">
+        <div class="status--bars">
+            <div class="status--bar" ref="z"></div>
+            <div class="status--bar" ref="x"></div>
+            <div class="status--bar" ref="y"></div>
+        </div>
+        <div class="touchbar" ref="touchbar"></div>
+        <div class="wheel manag" ref="wheel">
+            <i class="fas fa-arrows-alt-v"></i>
+        </div>
+        <div class="claw manag" ref="claw">
+            <i class="fas fa-arrows-alt-v"></i>
+        </div>
+    </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import touch from "../modules/touch";
+import io from "../modules/io";
+import progress from "../modules/progress";
+import { percent } from '../modules/helpers'
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+    mounted() {
+        this.init();
+        io.on('connected', () => {
+            io.emit('getCoords')
+        })
+    },
+    methods: {
+        init() {
+            new touch(this.$refs.touchbar).onscreen = (e) => {
+                io.emit("touchbar", e);
+            };
+
+            new touch(this.$refs.wheel).onscreen = (e) => {
+                io.emit("wheel", e);
+            };
+
+            new touch(this.$refs.claw).onscreen = (e) => {
+                io.emit("claw", e);
+            };
+            const progX = new progress({ el: this.$refs.x, text: "X" });
+            progX.init();
+            const progY = new progress({ el: this.$refs.y, text: "Y" });
+            progY.init();
+            const progZ = new progress({ el: this.$refs.z, text: "Z" });
+            progZ.init();
+            io.on("coord", ({ degX, degY, degZ }) => {
+                progX.animate(percent(degX, 180) / 100);
+                progZ.animate(percent(degZ, 180) / 100);
+                progY.animate(percent(degY, 180) / 100);
+            });
+        },
+    },
+};
 </script>
