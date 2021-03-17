@@ -26,9 +26,9 @@ const board = new Board({
 
 
 board.on("ready", () => {
-    
+
     const emitters = require('./server/emitters')
-    const {initServos} = require('./server/binders/servo')
+    const { initServos } = require('./server/providers/servoFunctions')
 
     io.on('connection', (socket) => {
         console.log(`connected ${socket.id}`);

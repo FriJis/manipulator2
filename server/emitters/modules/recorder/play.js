@@ -1,4 +1,4 @@
-const { recorderPlay } = require('../../../binders/servo')
+const { recorderPlay } = require('../../../providers/recorder')
 
 module.exports = () => {
     recorderPlay()

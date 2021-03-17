@@ -1,5 +1,5 @@
-const servo = require('../../binders/servo')
+const servo = require('../../providers/servoFunctions')
 
-module.exports = ({io}) => {
-    servo.emitDeg({io})
+module.exports = ({ io }) => {
+    servo.emitDeg({ io })
 }

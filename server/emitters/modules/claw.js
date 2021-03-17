@@ -1,4 +1,4 @@
-const { clawMoveTo } = require('../../binders/servo')
+const { clawMoveTo } = require('../../providers/servoFunctions')
 
 module.exports = ({ io }, { deltaX }) => {
     clawMoveTo({ io }, { deltaX })
