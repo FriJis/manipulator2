@@ -3,7 +3,15 @@ const { servoY, servoX, servoZ, servoClaw } = require('./servo')
 
 const recorder = new Recorder({ ms: 20 })
 
-let _rec = true
+let _rec = false
+
+const switchActive = () => {
+    _rec = !_rec
+}
+
+const getStatus = () => {
+    return _rec
+}
 
 const record = () => {
     if (_rec) {
@@ -26,6 +34,8 @@ const recorderPlay = () => {
 }
 
 module.exports = {
+    switchActive,
     record,
     recorderPlay,
+    getStatus
 }

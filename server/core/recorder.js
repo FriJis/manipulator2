@@ -5,7 +5,7 @@ module.exports = class Recorder {
         this._data = []
         this._interval = 0
     }
-    add(d) {
+    add({ x = 0, y = 0, z = 0, claw = 0 }) {
         this._data.push(d)
     }
     clear() {

@@ -10,7 +10,7 @@
             <i class="fas fa-arrows-alt-v"></i>
         </div>
         <div class="claw manag" ref="claw">
-            <i class="fas fa-arrows-alt-v"></i>
+            <i class="fas fa-arrows-alt-h"></i>
         </div>
         <div @click="play()">sdhsiufgydio</div>
     </div>
