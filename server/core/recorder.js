@@ -15,7 +15,6 @@ module.exports = class Recorder {
         let counter = 0
         if (this._data.length) {
             this._interval = setInterval(() => {
-
                 c(this._data[counter])
 
                 counter++

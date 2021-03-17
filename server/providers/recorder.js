@@ -11,7 +11,7 @@ const record = () => {
             x: servoX.getDeg(),
             y: servoY.getDeg(),
             z: servoZ.getDeg(),
-            claw: servoClaw.getDeg()
+            claw: servoClaw.getDeg(),
         })
     }
 }
@@ -27,5 +27,5 @@ const recorderPlay = () => {
 
 module.exports = {
     record,
-    recorderPlay
+    recorderPlay,
 }

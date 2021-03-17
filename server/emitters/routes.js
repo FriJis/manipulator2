@@ -1,3 +1,3 @@
 module.exports = {
-    updatesDeg: 'coord'
+    updatesDeg: 'coord',
 }

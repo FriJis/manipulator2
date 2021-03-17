@@ -10,5 +10,5 @@ module.exports = {
     getCoords,
     touchbar,
     wheel,
-    "recorder/play": recorderPlay
+    'recorder/play': recorderPlay,
 }

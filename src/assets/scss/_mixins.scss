@@ -1,4 +1,11 @@
-@mixin manag($width, $height, $top: initial, $right: initial, $bottom: initial, $left: initial) {
+@mixin manag(
+    $width,
+    $height,
+    $top: initial,
+    $right: initial,
+    $bottom: initial,
+    $left: initial
+) {
     width: $width;
     height: $height;
     top: $top;

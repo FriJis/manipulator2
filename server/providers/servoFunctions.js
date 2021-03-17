@@ -7,7 +7,7 @@ const emitDeg = ({ io }) => {
         x: servoX.getDeg(),
         y: servoY.getDeg(),
         z: servoZ.getDeg(),
-        claw: servoClaw.getDeg()
+        claw: servoClaw.getDeg(),
     })
 }
 
@@ -32,8 +32,6 @@ const clawMoveTo = ({ io }, { deltaX }) => {
     servoClaw.moveDelta(deltaX)
     emitDeg({ io })
 }
-
-
 
 module.exports = {
     touchbarMoveTo,

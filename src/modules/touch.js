@@ -5,12 +5,14 @@ export default class {
         this.active = 0
         this.startPoint = {
             x: 0,
-            y: 0
+            y: 0,
         }
         this.el = el
-        document.addEventListener('touchstart', e => this.startHandler(e))
-        document.addEventListener('touchend', e => this.endHandler(e))
-        document.addEventListener('touchmove', e => this.moveHandler(e), { passive: false })
+        document.addEventListener('touchstart', (e) => this.startHandler(e))
+        document.addEventListener('touchend', (e) => this.endHandler(e))
+        document.addEventListener('touchmove', (e) => this.moveHandler(e), {
+            passive: false,
+        })
     }
     startHandler(e) {
         if (e.target == this.el) {
@@ -18,7 +20,6 @@ export default class {
             this.setStartPoint(e.touches[0])
             this.el.classList.add('active')
         }
-
     }
     endHandler(e) {
         this.active = 0
@@ -32,7 +33,7 @@ export default class {
         if (this.active && typeof this.onscreen == 'function') {
             this.onscreen({
                 deltaX: e.touches[0].clientX - this.startPoint.x,
-                deltaY: e.touches[0].clientY - this.startPoint.y
+                deltaY: e.touches[0].clientY - this.startPoint.y,
             })
             this.setStartPoint(e.touches[0])
         }
@@ -40,7 +41,7 @@ export default class {
     setStartPoint({ clientX, clientY }) {
         this.startPoint = {
             x: clientX,
-            y: clientY
+            y: clientY,
         }
     }
 }

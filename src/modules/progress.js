@@ -1,6 +1,6 @@
 import pB from 'progressbar.js'
 export default class {
-    constructor({el,text}) {
+    constructor({ el, text }) {
         this.config = {
             strokeWidth: 12,
             trailColor: '#273147',
@@ -10,8 +10,8 @@ export default class {
             trailWidth: 12,
             svgStyle: null,
             step: (state, bar) => {
-                bar.setText(`${text}:${Math.round(bar.value() * 100)}`);
-            }
+                bar.setText(`${text}:${Math.round(bar.value() * 100)}`)
+            },
         }
         this.el = el
     }
