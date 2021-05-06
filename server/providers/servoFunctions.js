@@ -1,8 +1,6 @@
 const { servoY, servoX, servoZ, servoClaw } = require('./servo')
-const { record } = require('./recorder')
 
 const emitDeg = ({ io }) => {
-    record()
     io.emit('degrees/update', {
         x: servoX.getDeg(),
         y: servoY.getDeg(),

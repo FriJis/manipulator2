@@ -2,13 +2,29 @@
     <div id="app">
         <header>
             <div class="inner">
-                <router-link :to="{name: 'Home'}" exact class="btn">Home</router-link>
-                <router-link :to="{name: 'Recorder'}" exact class="btn">Recorder</router-link>
+                <router-link :to="{ name: 'Home' }" exact class="btn"
+                    >Home</router-link
+                >
+                <router-link :to="{ name: 'Recorder' }" exact class="btn"
+                    >Recorder</router-link
+                >
             </div>
         </header>
         <router-view />
     </div>
 </template>
+
+<script>
+import { on, emitters } from './modules/io'
+export default {
+    mounted() {
+        on.connected(() => emitters.degCoord())
+        on.degUpd(({ x, y, z, claw }) => {
+            this.$store.dispatch('coordinates/update', { x, y, z, claw })
+        })
+    },
+}
+</script>
 
 <style lang="scss" scoped>
 header {
@@ -23,7 +39,6 @@ header {
         height: 100%;
         display: flex;
 
-
         a {
             flex: 1;
             line-height: 51px;
@@ -32,7 +47,7 @@ header {
             display: block;
             text-decoration: none;
 
-            &.router-link-active{
+            &.router-link-active {
                 background: #242c40;
             }
         }
