@@ -15,6 +15,9 @@ export const emitters = {
     },
     degCoord() {
         io.emit('getCoords')
+    },
+    setCoordinates(e) {
+        io.emit('setCoordinates', e)
     }
 } 
 

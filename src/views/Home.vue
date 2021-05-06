@@ -31,6 +31,9 @@ export default {
     },
     mounted() {
         this.init()
+        on.degUpd(() => {
+            this.fillProgress()
+        })
         this.fillProgress()
     },
     computed: {
@@ -57,9 +60,7 @@ export default {
             this.progY.init()
             this.progZ = new progress({ el: this.$refs.z, text: 'Z' })
             this.progZ.init()
-            on.degUpd(() => {
-                this.fillProgress()
-            })
+            emitters.degCoord()
         },
         fillProgress() {
             const {

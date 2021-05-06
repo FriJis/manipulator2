@@ -27,7 +27,7 @@ const board = new Board({
 
 board.on("ready", () => {
 
-    const emitters = require('./server/emitters')
+    const events = require('./server/events')
     const { initServos } = require('./server/providers/servoFunctions')
 
     io.on('connection', (socket) => {
@@ -35,8 +35,8 @@ board.on("ready", () => {
         initServos()
         socket.emit('connected')
 
-        Object.keys(emitters).forEach(emitter => {
-            socket.on(emitter, e => emitters[emitter]({ io, socket }, e))
+        Object.keys(events).forEach(emitter => {
+            socket.on(emitter, e => e ? events[emitter]({ io, socket }, e) : '')
         })
     });
     http.listen(process.env.VUE_APP_PORT, process.env.VUE_APP_HOST, () => {

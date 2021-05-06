@@ -31,10 +31,19 @@ const clawMoveTo = ({ io }, { deltaX }) => {
     emitDeg({ io })
 }
 
+const setCoordinates = ({io}, {x, y, z, claw}) => {
+    servoX.moveTo(x)
+    servoY.moveTo(y)
+    servoZ.moveTo(z)
+    servoClaw.moveTo(claw)
+    emitDeg({io})
+}
+
 module.exports = {
     touchbarMoveTo,
     emitDeg,
     initServos,
     wheelMoveTo,
     clawMoveTo,
+    setCoordinates
 }

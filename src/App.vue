@@ -15,12 +15,23 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import { on, emitters } from './modules/io'
 export default {
+    computed: {
+        ...mapGetters({
+            recordActive: 'recorder/active'
+        })
+    },
     mounted() {
-        on.connected(() => emitters.degCoord())
+        on.connected(() => {
+            emitters.degCoord()
+        })
         on.degUpd(({ x, y, z, claw }) => {
             this.$store.dispatch('coordinates/update', { x, y, z, claw })
+            if(this.recordActive) {
+                this.$store.dispatch('recorder/addPosition', { x, y, z, claw })
+            }
         })
     },
 }
